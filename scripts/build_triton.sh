@@ -36,9 +36,9 @@ export PYTHONPATH=$TRITON_ROOT/python:${PYTHONPATH:-}
 
 TRITON_BUILD_WITH_CLANG_LLD=1 \
 TRITON_BUILD_WITH_CCACHE=true \
-LLVM_INCLUDE_DIRS="$LLVM_PROJECT_BUILD_DIR/include" \
-LLVM_LIBRARY_DIR="$LLVM_PROJECT_BUILD_DIR/lib" \
-LLVM_SYSPATH="$LLVM_PROJECT_BUILD_DIR" \
+LLVM_INCLUDE_DIRS="$LLVM_PROJECT_BUILD_DIR/install/include" \
+LLVM_LIBRARY_DIR="$LLVM_PROJECT_BUILD_DIR/install/lib" \
+LLVM_SYSPATH="$LLVM_PROJECT_BUILD_DIR/install" \
 pip install -e . --no-build-isolation --verbose
 
 echo "🎉 Triton build completed successfully."
