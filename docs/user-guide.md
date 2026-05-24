@@ -107,15 +107,16 @@ We provide a script `HEXAGON_MLIR_ROOT/scripts/build_hexagon_mlir.sh` that autom
 * Creating a Python virtual environment and installing required Python packages.
 * Building Triton with Hexagon backend support and running tests.
 
+The default target is set to v75. To change the target to e.g. v73, you will need to change `export HEXAGON_ARCH_VERSION=75` to `73` in
+`scripts/set_local_env.sh` and  in `scripts/build_triton.sh`.
+
 To run the script, navigate to the root of the `hexagon-mlir` repository and execute:
 
 ```bash
+source scripts/set_local_env.sh
 bash ./scripts/build_hexagon_mlir.sh
 ```
 The script builds hexagon-mlir and runs the LIT tests for you to ensure the build succeeded.
-Once the build script completes, you may want to source this script to set some useful environment variables for further tesing:
-```bash
-source ./scripts/set_local_env.sh
 ```
 We highly recommend using the script. However, if you prefer to set up the environment manually, follow the steps below.
 
