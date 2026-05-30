@@ -57,7 +57,15 @@ set(HEXAGON_INCLUDES
     # -I${HEXAGON_TOOLCHAIN}/Tools/target/hexagon/include/c++/v1
 )
 
-set(HEXAGON_FLAGS -O2 -Wall -mv${Q6_VERSION} -mhvx -mhvx-qfloat)
+# Cap bitcode arch at v75: at -mv79, the QHL header (qhmath_hvx_vector.h) includes
+# xqf/ which uses IEEE FP intrinsics (vmpy.sf.sf.128B) that hit an upstream LLVM
+# ISel/MC-verifier bug. Capping at v75 selects the QFloat implementation instead.
+if(Q6_VERSION GREATER 75)
+  set(BITCODE_ARCH 75)
+else()
+  set(BITCODE_ARCH ${Q6_VERSION})
+endif()
+set(HEXAGON_FLAGS -O2 -Wall -mv${BITCODE_ARCH} -mhvx -mhvx-qfloat)
 
 ###############################################################################
 # Build a library of runtime linked modules
