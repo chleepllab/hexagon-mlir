@@ -104,6 +104,7 @@ def compile_to_linalg(model, input, dump_to_file=None, debug=False) -> str:
         func_name=model.__class__.__name__,
         enable_graph_printing=debug,
         enable_ir_printing=debug,
+        experimental_support_mutation=True,
     )
 
     if dump_to_file:
