@@ -41,8 +41,10 @@ This user guide provides instructions for setting up and installing Qualcomm Hex
 ### System Requirements
 - **Operating System**: Ubuntu 22.04 (recommended)
 - **Python Version**: Python 3.11 (recommended)
-- **Hardware**: Qualcomm Hexagon NPU (tested architectures - v73, v75, v79)
+- **Hardware**: Qualcomm Hexagon NPU (tested architectures - v73, v75, v79, v81)
 - **Device Access**: Access to Qualcomm Hexagon NPU enabled device
+
+Note: HexKL option is not valid currently for v81.
 
 ### Required Permissions
 - Root/sudo access for system package installation
