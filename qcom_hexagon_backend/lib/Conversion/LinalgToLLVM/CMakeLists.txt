@@ -8,6 +8,7 @@ add_mlir_conversion_library(LinalgToLLVM
   LinalgToLLVMPass.cpp
   HexmemCpyToDMA.cpp
   FusionPass.cpp
+  HexagonMatmulFusionPass.cpp
   SplitReduceGenericPass.cpp
   EraseVectorToTensorWritebackPass.cpp
   SlicingPass.cpp

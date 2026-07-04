@@ -240,6 +240,19 @@ def HexagonFusion :
        "hexagon::createHexagonFusionPass()";
 }
 
+def HexagonMatmulFusion :
+    InterfacePass<"hexagon-matmul-fusion", "mlir::FunctionOpInterface"> {
+  let summary = "Pass to fuse matmul ops";
+  let options = [
+    Option<"fusionAllowRecompute", "far", "bool",
+           /*default=*/"false",
+           "Allow recomputing values when fusing matmul ops">,
+    Option<"fusionDoMultiUse", "fdmu", "bool",
+           /*default=*/"true",
+           "Do multi-use matmul fusion">
+   ];
+}
+
 def SplitReduceGeneric : Pass<"split-reduce-generic", "func::FuncOp"> {
   let summary = "Split generic reduction operations for optimization";
   let description = [{

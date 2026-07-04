@@ -64,6 +64,7 @@ int main(int argc, char **argv) {
 
   mlir::hexagon::registerHexagonAddFastMathPass();
   mlir::hexagon::registerHexagonFusionPass();
+  mlir::hexagon::registerHexagonMatmulFusionPass();
   mlir::hexagon::registerHexagonExtendPack();
   mlir::hexagon::registerEraseUnusedLinalgOperands();
   mlir::hexagon::registerReduceContractionRankPass();

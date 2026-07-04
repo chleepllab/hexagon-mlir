@@ -30,6 +30,9 @@ std::unique_ptr<InterfacePass<FunctionOpInterface>> createHexagonExtendPackPass(
 std::unique_ptr<InterfacePass<FunctionOpInterface>> createHexagonFusionPass(
     const HexagonFusionOptions &options = HexagonFusionOptions());
 
+std::unique_ptr<InterfacePass<FunctionOpInterface>> createHexagonMatmulFusionPass(
+    const HexagonMatmulFusionOptions &options);
+
 std::unique_ptr<OperationPass<ModuleOp>> createHexagonSlicingPass(
     const HexagonSlicingOptions &options = HexagonSlicingOptions());
 

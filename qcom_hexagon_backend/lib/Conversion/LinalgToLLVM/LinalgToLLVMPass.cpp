@@ -277,9 +277,12 @@ public:
       pm.addNestedPass<func::FuncOp>(createFormSCFThreadsPass());
     }
 
-    if (fusion)
+    if (fusion) {
       pm.addNestedPass<func::FuncOp>(
           createHexagonFusionPass(setFusion(HexagonFusionOptions{})));
+      pm.addNestedPass<func::FuncOp>(
+          createHexagonMatmulFusionPass(setFusion(HexagonMatmulFusionOptions{})));
+    }
     pm.addPass(createEraseUnusedLinalgOperands());
 
     pm.addPass(createCanonicalizerPass());

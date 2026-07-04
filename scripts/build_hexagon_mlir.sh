@@ -36,7 +36,7 @@ cd HOST_TOOLCHAIN
 
 if [[ ! -f clang+llvm-13.0.1-x86_64-linux-gnu-ubuntu-18.04.tar.xz ]]; then 
   echo "Downloading HOST_TOOLCHAIN..." 
-  wget https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.1/clang+llvm-13.0.1-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+  wget https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.1/clang+llvm-13.0.1-x86_64-linux-gnu-ubuntu-18.04.tar.xz --no-check-certificate
 fi
 
 if [[ ! -d bin ]]; then
@@ -74,7 +74,7 @@ cd HEXAGON_SDK/
 
 if [[ ! -f Hexagon_SDK_lnx.zip ]]; then
   echo "Downloading HEXAGON_SDK..."
-  wget https://softwarecenter.qualcomm.com/api/download/software/sdks/Hexagon_SDK/Linux/Debian/6.4.0.2/Hexagon_SDK_lnx.zip
+  wget https://softwarecenter.qualcomm.com/api/download/software/sdks/Hexagon_SDK/Linux/Debian/6.4.0.2/Hexagon_SDK_lnx.zip --no-check-certificate
 fi
 
 if [[ ! -d Hexagon_SDK ]]; then
@@ -93,7 +93,7 @@ cd HEXAGON_TOOLS
 
 if [[ ! -f Hexagon_open_access.Core.19.0.02.Linux-Any.tar.gz ]]; then
   echo "Downloading HEXAGON_TOOLS..."
-  wget https://softwarecenter.qualcomm.com/api/download/software/tools/Hexagon_open_access/Linux/Debian/19.0.02/Hexagon_open_access.Core.19.0.02.Linux-Any.tar.gz
+  wget https://softwarecenter.qualcomm.com/api/download/software/tools/Hexagon_open_access/Linux/Debian/19.0.02/Hexagon_open_access.Core.19.0.02.Linux-Any.tar.gz --no-check-certificate
 fi
 if [[ ! -d Tools ]]; then
   echo "Extracting HEXAGON_TOOLS..."
@@ -112,7 +112,7 @@ cd HEXKL_DIR
 
 if [[ ! -f Hexagon_KL.Core.1.0.0.Linux-Any.zip ]]; then
   echo "Downloading Hexagon_KL..."
-  wget https://softwarecenter.qualcomm.com/api/download/software/tools/Hexagon_KL/Linux/1.0.0/Hexagon_KL.Core.1.0.0.Linux-Any.zip
+  wget https://softwarecenter.qualcomm.com/api/download/software/tools/Hexagon_KL/Linux/1.0.0/Hexagon_KL.Core.1.0.0.Linux-Any.zip --no-check-certificate
 fi
 
 if [[ ! -d hexkl_addon ]]; then
