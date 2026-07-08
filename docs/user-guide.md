@@ -41,8 +41,10 @@ This user guide provides instructions for setting up and installing Qualcomm Hex
 ### System Requirements
 - **Operating System**: Ubuntu 22.04 (recommended)
 - **Python Version**: Python 3.11 (recommended)
-- **Hardware**: Qualcomm Hexagon NPU (tested architectures - v73, v75, v79)
+- **Hardware**: Qualcomm Hexagon NPU (tested architectures - v73, v75, v79, v81)
 - **Device Access**: Access to Qualcomm Hexagon NPU enabled device
+
+Note: HexKL option is not valid currently for v81.
 
 ### Required Permissions
 - Root/sudo access for system package installation
@@ -287,11 +289,12 @@ which linalg-hexagon-opt
 lit triton/build/cmake.linux-x86_64-cpython-${PYTHON_VERSION}/third_party/qcom_hexagon_backend/test/
 ```
 
-*NOTE*: Steps 3 and 4 are only applicable if you have access to a Qualcomm Hexagon NPU device.
-If you do not have access to such a device, you can skip these steps; however, please contact us at [hexagon-mlir.support@qti.qualcomm.com](mailto:hexagon-mlir.support@qti.qualcomm.com) for assistance in obtaining access to a test device.
+*NOTE*: Steps 3 and 4 are applicable for running tests on Qualcomm Hexagon NPU devices or on simulator.
+For assistance in obtaining access to a test device, please contact us at [hexagon-mlir.support@qti.qualcomm.com](mailto:hexagon-mlir.support@qti.qualcomm.com).
 
 ### Step 3: Run Triton Test
 If you have access to a Qualcomm NPU device, please set the variables ANDROID_HOST and ANDROID_SERIAL to the host name and hexagon device number.
+If you do not have access to a Qualcomm NPU device, you can still run the test on hexagon simulator. Please set RUN_ON_SIM environment variable to 1 before running the tests.
 You can then run an end-to-end compilation and execution flow using the following command:
 ```bash
 # Compile and execute a simple Triton kernel
