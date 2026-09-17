@@ -280,8 +280,10 @@ public:
     if (fusion) {
       pm.addNestedPass<func::FuncOp>(
           createHexagonFusionPass(setFusion(HexagonFusionOptions{})));
-      pm.addNestedPass<func::FuncOp>(
-          createHexagonMatmulFusionPass(setFusion(HexagonMatmulFusionOptions{})));
+      // Matmul fusion is opt-in: only run it when LINALG_FUSION=1 is set.
+      if (isEnvTrue("LINALG_FUSION"))
+        pm.addNestedPass<func::FuncOp>(createHexagonMatmulFusionPass(
+            setFusion(HexagonMatmulFusionOptions{})));
     }
     pm.addPass(createEraseUnusedLinalgOperands());
 

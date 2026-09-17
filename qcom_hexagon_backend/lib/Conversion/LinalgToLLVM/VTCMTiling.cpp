@@ -71,6 +71,7 @@
 #include "mlir/Dialect/Linalg/IR/Linalg.h"
 #include "mlir/Dialect/Linalg/Passes.h"
 #include "mlir/Dialect/Linalg/Transforms/Transforms.h"
+#include "mlir/Dialect/SCF/IR/SCF.h"
 #include "mlir/Dialect/Tensor/IR/Tensor.h"
 #include "mlir/Dialect/Tensor/Transforms/Transforms.h"
 
@@ -231,7 +232,15 @@ void copyResultsToDDR(IRRewriter &rewriter, GenericOp op,
 void VTCMTilingPass::runOnOperation() {
   auto userProvidedTileSizes = parseTileSizes(tileSizes);
   auto funcOp = getOperation();
-
+  // NOTE: tried skipping ops already nested in an scf.for/scf.forall here (to
+  // avoid re-VTCM-prefetching hexagon-matmul-fusion's pre-tiled sub-generics
+  // one tile at a time). It does eliminate the DMA traffic as intended, but
+  // then the Hexagon LLVM backend crashes compiling the un-preprocessed tile
+  // shapes (BitTracker.cpp:744, `WD >= WS` assertion) - the same crash shows
+  // up whether VTCMTilingPass or HexagonTilingPass is the one skipped, so
+  // something in this pass's processing is currently load-bearing for
+  // avoiding that backend bug on these tile shapes, not just for VTCM
+  // locality. Left ungated until that's root-caused.
   funcOp.walk([&](linalg::GenericOp op) {
     IRRewriter rewriter(op.getContext());
     SmallVector<bool> prefetch(op.getNumOperands(), false);

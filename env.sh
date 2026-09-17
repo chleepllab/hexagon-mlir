@@ -37,7 +37,9 @@ export RUN_ON_SIM=1
 #python test/python/torch-mlir/gpt2lmheadmodel.py
 #  pytest -sv test/python/triton/test_flash_attention.py
 #MLIR_ENABLE_DUMP=1 LLVM_IR_ENABLE_DUMP=1 pytest -sv matmul.py
-TRITON_ALWAYS_COMPILE=1 TRITON_KERNEL_DUMP=1 TRITON_DUMP_DIR=dump_share pytest -sv base.py
+LINALG_FUSION=1 \
+TRITON_ALWAYS_COMPILE=1 TRITON_KERNEL_DUMP=1 TRITON_DUMP_DIR=dump \
+pytest -sv --log-level=ERROR two_matmul.py
 #TRITON_ALWAYS_COMPILE=1 \
 #  TRITON_KERNEL_DUMP=1 \
 #  TRITON_DUMP_DIR=dump_share \

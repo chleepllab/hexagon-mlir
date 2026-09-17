@@ -45,3 +45,11 @@ __pycache__/
 
 # triton-install dir
 triton-install
+
+# Log files
+*.log
+
+# Local scratch/dump dirs and generated artifacts
+dump/
+mlir-env/
+test/python/torch-mlir/*.mlirbc

@@ -259,6 +259,13 @@ struct HexagonTilingPass : public ::impl::HexagonTilingBase<HexagonTilingPass> {
 
   void runOnOperation() override {
     auto moduleOp = getOperation();
+    // NOTE: tried skipping ops already nested in an scf.for/scf.forall here
+    // (to avoid re-tiling hexagon-matmul-fusion's pre-tiled sub-generics),
+    // but HexagonTilingPass's re-tiling normally shapes the innermost dim for
+    // HexagonVectorizationPass; skipping it left vectorization operating on
+    // fusion's raw tile shapes and crashed the Hexagon LLVM backend
+    // (BitTracker.cpp:744, `WD >= WS` assertion in machine codegen). Left
+    // ungated - only VTCMTilingPass is skipped for LINALG_FUSION=1.
     moduleOp.walk([&](linalg::LinalgOp op) {
       bool appliedSplitReduction = false;
       IRRewriter rewriter(&getContext());
